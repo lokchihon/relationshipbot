@@ -11,14 +11,27 @@ public class Friend {
 	public String getResponse (String statement)
 	{
 		String response = "";
+		String [] emotions = {"happy", "excited", "ecstatic", "amazed", "angry", "upset", 
+				"salty", "sad", "upset", "depressed", "annoyed", "scared", "overwhelmed", 
+				"bitter","confused", "bored", "nervous", "embarrassed", "awkward", "hurt",
+				"lonely", "curious"};
 		if (statement.length() == 0)
 		{
-			response = "Are you mad at me?";
+			response = "Are you mad at me? Why aren't you talking about?";
 		}
-		else if (findKeyword(statement, "angry") >= 0)
+		/* 
+		 * Make array of emotions
+		 * Make for loop to run through emotions with findKeyword method
+		 * Once one of them matches, response = "Why are you " + emotion[i] "?"
+		 */
+		for (String x : emotions)
 		{
-			response = "Why are you angry?";
+			if (emotions[x] == findKeyword(statement, ))
+			{
+				
+			}
 		}
+		
 		return response; 
 	}
 	
