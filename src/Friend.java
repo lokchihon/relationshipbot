@@ -29,6 +29,10 @@ public class Friend {
 		{
 			response = "Are you mad at me? Why aren't you talking to me?";
 		}
+		else if (findKeyword(statement, "I am", 0))
+		{
+			response = transformIAm(statement);
+		}
 		else if (findKeyword(statement, "I want to", 0) >= 0)
 		{
 			response = transformIWantToStatement(statement);
@@ -131,9 +135,8 @@ public class Friend {
 		}
 		int psn = findKeyword (statement, "I want to", 0);
 		String restOfStatement = statement.substring(psn + 9).trim();
-		return "Why don't you " + restOfStatement + "then?";
+		return "Why do you want to " + restOfStatement + "then?";
 	}
-
 	
 	/**
 	 * Take a statement with "I want <something>." and transform it into 
@@ -155,16 +158,52 @@ public class Friend {
 		int psn = findKeyword (statement, "I want", 0);
 		String restOfStatement = statement.substring(psn + 6).trim();
 		return "I want " + restOfStatement + "too!";
-		//gigi
 	}
 	
 	private String transformQuestions (String statement)
 	{
-		if(findKeyword(statement, "class", 0)>=0)
+		if(findKeyword(statement, "school", 0) >= 0
+				|| findKeyword(statement, "day", 0) >= 0
+				|| findKeyword(statement, "homework", 0) >= 0
+				|| findKeyword(statement, "", 0) >= 0
+				|| findKeyword(statement, "school", 0) >= 0
+				|| findKeyword(statement, "school", 0) >= 0
+				)
 		{
-			return "What?";
+			return "I had a horrible day at school today! I forgot my homework!";
 		}
-		return "Why are you asking so many questions? I told you last time.";
+		else
+		{
+			return "What did you say?";
+		}
+	}
+	
+	private String transformIAm (String statement)
+	{
+		if (findKeyword(statement, "happy", 0) >= 0
+				|| findKeyword(statement, "excited", 0) >= 0
+				|| findKeyword(statement, "glad", 0) >= 0
+				|| findKeyword(statement, "giddy", 0) >= 0
+				|| findKeyword(statement, "lucky", 0) >= 0
+				|| findKeyword(statement, "good mood", 0) >= 0
+				)
+		{
+			return "Ooo! What happened today?";
+		}
+		if (findKeyword(statement, "sad", 0) >= 0
+				|| findKeyword(statement, "depressed", 0) >= 0
+				|| findKeyword(statement, "upset", 0) >= 0
+				|| findKeyword(statement, "angry", 0) >= 0
+				|| findKeyword(statement, "mad", 0) >= 0
+				|| findKeyword(statement, "bad mood", 0) >= 0
+				)
+		{
+			return "Aw. You know you can always talk to me right? Tell me what happened.";
+		}
+		else
+		{
+			return "Why? Tell me about it!";
+		}
 	}
 	
 	private String getRandomResponse ()
