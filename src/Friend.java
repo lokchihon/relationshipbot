@@ -155,6 +155,7 @@ public class Friend {
 		int psn = findKeyword (statement, "I want", 0);
 		String restOfStatement = statement.substring(psn + 6).trim();
 		return "I want " + restOfStatement + "too!";
+		//gigi
 	}
 	
 	private String transformQuestions (String statement)
