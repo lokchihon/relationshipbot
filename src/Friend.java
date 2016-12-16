@@ -37,7 +37,7 @@ public class Friend {
 		{
 			response = transformIWantStatement(statement);
 		}
-		else if (//statement.substring(statement.length()-1 == "?"
+		else if (statement.substring(statement.length()-1) == "?")
 		{
 			response = transformQuestions(statement);
 		}
@@ -159,7 +159,11 @@ public class Friend {
 	
 	private String transformQuestions (String statement)
 	{
-		return "Why are you asking so many questions? I thought you knew me better.";
+		if(findKeyword(statement, "class", 0)>=0)
+		{
+			return "What?";
+		}
+		return "Why are you asking so many questions? I told you last time.";
 	}
 	
 	private String getRandomResponse ()
