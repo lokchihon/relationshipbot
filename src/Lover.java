@@ -107,7 +107,7 @@ public class Lover {
 		String lastChar = statement.substring(statement
 				.length() - 1);
 		if (lastChar.equals("."))
-			//this should work
+			
 		{
 			statement = statement.substring(0, statement
 					.length() - 1);
