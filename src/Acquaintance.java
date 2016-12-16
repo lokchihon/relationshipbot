@@ -1,3 +1,4 @@
+import java.util.Random;
 
 public class Acquaintance {
 		public String getGreeting()
@@ -37,9 +38,24 @@ public class Acquaintance {
 				response = "Say something, please.";
 			}
 
-			else if (findKeyword(statement, "no") >= 0)
+			else if (findKeyword(statement, "fun") >= 0)
 			{
-				response = "Why so negative?";
+				response = "What do you do for fun? Synchronized swimming is fun for me.";
+			}
+			else if (findKeyword(statement, "swim") >= 0
+					|| findKeyword(statement, "run") >= 0
+					|| findKeyword(statement, "football") >= 0
+					|| findKeyword(statement, "soccer") >= 0
+					|| findKeyword(statement, "baseball") >= 0
+					|| findKeyword(statement, "badminton") >= 0
+					|| findKeyword(statement, "tesnnis") >= 0
+					|| findKeyword(statement, "basketball") >= 0)
+			{
+				response = "Are you athletic?";
+			}
+			else if (findKeyword(statement, "sports") >= 0)
+			{
+				response = "Do you play any sports?";
 			}
 			else if (findKeyword(statement, "mother") >= 0
 					|| findKeyword(statement, "father") >= 0
@@ -48,13 +64,10 @@ public class Acquaintance {
 			{
 				response = "Tell me more about your family.";
 			}
-
-			// Responses which require transformations
 			else if (findKeyword(statement, "I want to", 0) >= 0)
 			{
 				response = transformIWantToStatement(statement);
 			}
-			//  Part of student solution
 			else if (findKeyword(statement, "I want", 0) >= 0)
 			{
 				response = transformIWantStatement(statement);
