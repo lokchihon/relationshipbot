@@ -79,6 +79,7 @@ public class Lover {
 	
 	
 	
+	
 	private String transformIWantStatement(String statement)
 	{
 		//  Remove the final period, if there is one
