@@ -27,6 +27,30 @@ public class Lover {
 		{
 			response = "Really? Tell me all about it!";
 		}
+		else if (findKeyword(statement, "I love you") >= 0)
+		{
+			response = "I love you too. ";
+		}
+		else if (findKeyword(statement, "mother") >= 0
+				|| findKeyword(statement, "father") >= 0
+				|| findKeyword(statement, "sister") >= 0
+				|| findKeyword(statement, "brother") >= 0)
+		{
+			response = "Spekaing of family, my parents are eagered to meet you. Want to come over for dinner?";
+		}
+		else if (findKeyword(statement, "on a date") >= 0)
+		{
+			response = "Lets go on a date next week";
+		}
+		else if (findKeyword(statement, "I want to", 0) >= 0)
+		{
+			response = transformIWantToStatement(statement);
+		}
+		else if (findKeyword(statement, "I want", 0) >= 0)
+		{
+			response = transformIWantStatement(statement);
+		}
+
 	}
 
 	
@@ -36,7 +60,6 @@ public class Lover {
 	
 	private String transformIWantToStatement(String statement)
 	{
-		//  Remove the final period, if there is one
 		statement = statement.trim();
 		String lastChar = statement.substring(statement
 				.length() - 1);
@@ -47,7 +70,7 @@ public class Lover {
 		}
 		int psn = findKeyword (statement, "I want to", 0);
 		String restOfStatement = statement.substring(psn + 9).trim();
-		return "What would it mean to " + restOfStatement + "?";
+		return "Me too" + "!" + "Lets " + restOfStatement + "!";
 	}
 	
 	
@@ -69,7 +92,7 @@ public class Lover {
 		}
 		int psn = findKeyword (statement, "I want", 0);
 		String restOfStatement = statement.substring(psn + 6).trim();
-		return "Would you really be happy if you had " + restOfStatement + "?";
+		return "Do you really want to " + restOfStatement + "?";
 	}
 	
 	
