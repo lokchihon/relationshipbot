@@ -276,7 +276,7 @@ public class Friend {
 			"We had a HUGE family dinner the other day! Did you have any family dinners recently?",
 			"Christmas is coming up soon! What's a good gift for families?",
 	};
-	
+	//whatgucci github
 	private String [] familyMembers = {
 			"mother", 
 			"father", 
