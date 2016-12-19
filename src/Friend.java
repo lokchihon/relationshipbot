@@ -29,7 +29,7 @@ public class Friend {
 		{
 			response = "Are you mad at me? Why aren't you talking to me?";
 		}
-		else if (findKeyword(statement, "I am", 0))
+		else if (findKeyword(statement, "I am", 0) >= 0)
 		{
 			response = transformIAm(statement);
 		}
@@ -162,24 +162,53 @@ public class Friend {
 	
 	private String transformQuestions (String statement)
 	{
+		for(int i = 0; i<familyMembers.length; i++)
+		{
+			if (findKeyword(statement, familyMembers[i], 0) >= 0)
+			{
+				return getRandomResponses3();
+			}
+		}
+		
 		if(findKeyword(statement, "school", 0) >= 0
 				|| findKeyword(statement, "day", 0) >= 0
 				|| findKeyword(statement, "homework", 0) >= 0
-				|| findKeyword(statement, "", 0) >= 0
-				|| findKeyword(statement, "school", 0) >= 0
+				|| findKeyword(statement, "teacher", 0) >= 0
+				|| findKeyword(statement, "classmate", 0) >= 0
 				|| findKeyword(statement, "school", 0) >= 0
 				)
 		{
-			return "I had a horrible day at school today! I forgot my homework!";
+			return getRandomResponses2();
 		}
+		else if(findKeyword(statement, "mom", 0) >= 0
+				|| findKeyword(statement, "mother", 0) >= 0
+				|| findKeyword(statement, "dad", 0) >= 0
+				|| findKeyword(statement, "father", 0) >= 0
+				|| findKeyword(statement, "sister", 0) >= 0
+				|| findKeyword(statement, "brother", 0) >= 0
+				|| findKeyword(statement, "grandmother", 0) >= 0
+				|| findKeyword(statement, "grandfather", 0) >= 0
+				)
+		{
+			return getRandomResponses3();
+		}
+					
 		else
 		{
-			return "What did you say?";
+			return "I don't really want to talk about that. What about you?";
 		}
 	}
 	
 	private String transformIAm (String statement)
 	{
+		for(int i = 0; i<emotions.length; i++)
+		{
+			if (findKeyword(statement, emotions[i], 0) >= 0)
+			{
+				return "Why are you " + emotions[i] + "?";
+			}
+		}
+		
 		if (findKeyword(statement, "happy", 0) >= 0
 				|| findKeyword(statement, "excited", 0) >= 0
 				|| findKeyword(statement, "glad", 0) >= 0
@@ -212,13 +241,62 @@ public class Friend {
 		return randomResponses [r.nextInt(randomResponses.length)];
 	}
 	
+	private String getRandomResponses2 ()
+	{
+		Random r2 = new Random();
+		return randomResponses2 [r2.nextInt(randomResponses2.length)];
+	}
+	
+	private String getRandomResponses3 ()
+	{
+		Random r3 = new Random();
+		return randomResponses3[r3.nextInt(randomResponses3.length)];
+	}
+	
+	//Generates non-commital responses
 	private String [] randomResponses = {
 			"Interesting, tell me more",
 			"No way.",
 			"Are you sure?",
 			"You don't say.",
 			//  All you need to do is add lines here
-			"When can we hang out?",
+			"When can we hang out?"
 			};
+	
+	//Generates responses in regards of school
+	private String [] randomResponses2 = {
+			"I had a pretty bad day at school today. How was your day?",
+			"I stayed up all night doing a project. Have you had any projects lately?",
+			"My teacher assigned a crazy amount of homework. Do your teachers do that?"
+			};
+	
+	//Generates responses in regards of family
+	private String [] randomResponses3 = {
+			"My family is doing good! How's your family?",
+			"We had a HUGE family dinner the other day! Did you have any family dinners recently?",
+			"Christmas is coming up soon! What's a good gift for families?",
+	};
+	
+	private String [] familyMembers = {
+			"mother", 
+			"father", 
+			"grandmother",
+			"grandmother",
+			"uncle",
+			"aunt",
+			"brother",
+			"sister",
+	};
+	
+	private String [] emotions = {
+			"happy",
+			"sad", 
+			"angry",
+			"upset",
+			"excited"
+	};
+	
+	
+	}
 
-}
+
