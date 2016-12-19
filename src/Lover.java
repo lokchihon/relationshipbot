@@ -1,8 +1,10 @@
+import java.util.Random;
 
 /*
  * Shannon Zheng
  */
-public class Lover {
+public class Lover 
+{
 	
 	public String getGreeting()
 	{
@@ -36,7 +38,9 @@ public class Lover {
 				|| findKeyword(statement, "sister") >= 0
 				|| findKeyword(statement, "brother") >= 0)
 		{
-			response = "Spekaing of family, my parents are eagered to meet you. Want to come over for dinner?";
+			response = "Spekaing of family, my parents are "
+					+ "eagered to meet you. Want to come over "
+					+ "for dinner?";
 		}
 		else if (findKeyword(statement, "on a date") >= 0)
 		{
@@ -44,15 +48,49 @@ public class Lover {
 		}
 		else if (findKeyword(statement, "I want to", 0) >= 0)
 		{
-			response = transformIWantToStatement(statement);
+			response = transformIWantToStatement(statement) 
+					+ "Lets do that for our date.";
 		}
 		else if (findKeyword(statement, "I want", 0) >= 0)
 		{
 			response = transformIWantStatement(statement);
 		}
+		else if (findKeyword(statement, "to go on", 0) >= 0
+			    || findKeyword(statement, "to go to", 0) >= 0
+			    || findKeyword(statement, "hang out at", 0) >= 0
+			    || findKeyword(statement, "to go in", 0) >= 0)
+		{
+			response = transformToGoStatement(statement);
+		}
+		else
+		{
+			int psn = findKeyword(statement, "you", 0);
 
+			if (psn >= 0
+					&& findKeyword(statement, "me", psn) >= 0)
+			{
+				response = transformYouMeStatement(statement);
+			}
+			else
+			{
+				psn = findKeyword(statement, "i", 0);
+
+				if (psn >= 0
+						&& findKeyword(statement, "you", psn) >= 0)
+				{
+					response = transformIYouStatement(statement);
+				}
+				else
+				{
+					response = getRandomResponse();
+				}
+			}
+		}
+		return response;
 	}
-
+		
+	
+	
 	
 	
 	
@@ -117,7 +155,8 @@ public class Lover {
 		int psnOfMe = findKeyword (statement, "me", psnOfYou + 3);
 		
 		String restOfStatement = statement.substring(psnOfYou + 3, psnOfMe).trim();
-		return "What makes you think that I " + restOfStatement + " you?";
+		return "Babe, what would make you think that I would" 
+				+ restOfStatement + " you?";
 	}
 
 
@@ -215,7 +254,46 @@ public class Lover {
 	{
 		return findKeyword (statement, goal, 0);
 	}
+	
+	private String getRandomResponse ()
+	{
+		Random r = new Random ();
+		return randomResponses [r.nextInt(randomResponses.length)];
+	}
+	
+	private String [] randomResponses =
+	{		
+		"It's ok, I still love you",
+		"Can you say that again, Honey?",
+		"Do you really think so?",
+		"Mom and dad are making fried chicken tonight. Come over",
+		"Oh really?",
+		"Do you want to go on a trip this weekend?",
+		"So, would you like to go for a walk?",
+		"Could you say that again?"
+	};
+	private String transformToGoStatement(String statement)
+	{
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		
+		int psn = findKeyword (statement, "to go", 0);
+		
+		
+		String restOfStatement = statement.substring(psn + 5).trim();
+		return "Sure, lets" + restOfStatement + " together?";
+	}
+	
 }
+
+
 
 
 
