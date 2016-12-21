@@ -1,5 +1,10 @@
 /*
  * Lok Chi Hon
+ * Aminata Dieng
+ * Shannon Zheng
+ * Friend class for chatbot
+ * Mr. Levin
+ * Computer Science A
  */
 import java.util.Random;
 
@@ -45,25 +50,15 @@ public class Friend {
 		{
 			response = transformQuestions(statement);
 		}
+		else if (findKeyword(statement, "hangout", 0) >= 0
+				|| findKeyword(statement, "hang out",0) >=0)
+		{
+			response = createEvent(statement);
+		}
 		else
 		{
 			response = getRandomResponse();
-		}
-
-		/* 
-		 * Make array of emotions
-		 * Make for loop to run through emotions with findKeyword method
-		 * Once one of them matches, response = "Why are you " + emotion[i] "?"
-		
-		for (int x = 0; x < emotions.length; x++)
-		{
-			if (emotions[x] == findKeyword(statement, x))
-			{
-				response = "Why are you " + emotions[x];
-			}
-		}
-		*/
-		
+		}		
 		return response; 
 	}
 	
@@ -184,7 +179,6 @@ public class Friend {
 		return response;
 	}
 
-	
 	//Transforms "I am ____" statements so the user will be prompted to talk about why they are _____
 	private String transformIAm (String statement)
 	{
@@ -229,6 +223,12 @@ public class Friend {
 		return familyResponses[r3.nextInt(familyResponses.length)];
 	}
 	
+	private String createEvent(String statement)
+	{
+		Random r4 = new Random();
+		return eventResponses [r4.nextInt(eventResponses.length)];
+	}
+	
 	//Generates non-commital responses
 	private String [] randomResponses = {
 			"Interesting, tell me more",
@@ -236,7 +236,9 @@ public class Friend {
 			"Are you sure?",
 			"You don't say.",
 			//  All you need to do is add lines here
-			"When can we hang out?"
+			"When can we hang out?",
+			"Are you free any time soon?",
+			"How's life?"
 			};
 	
 	//Generates responses in regards of school
@@ -252,6 +254,14 @@ public class Friend {
 			"My family is doing good! How's your family?",
 			"We had a HUGE family dinner the other day! Did you have any family dinners recently?",
 			"Christmas is coming up soon! What's a good gift for any family member?",
+	};
+	
+	//Generates responses about planning a hangout
+	private String [] eventResponses = {
+			"Where do you like to hangout?",
+			"What's your favorite activity?",
+			"I'm so busy lately. Maybe another time!",
+			"I'm free Wednesdays"
 	};
 
 	//List of family members
@@ -296,7 +306,7 @@ public class Friend {
 			"upset",
 			"angry",
 			"mad",
-			"bad mood"
+			"bad mood",
 	};
 	
 
