@@ -59,6 +59,45 @@ public class Acquaintance
 		{
 			response = "Do you play any sports?";
 		}
+		else if (findKeyword(statement, "school") >= 0
+				||findKeyword(statement, "school") >= 0
+				|| findKeyword(statement, "grade") >= 0)
+		{
+			response = "I'm so anxious to graduate in a few months.";
+		}
+		else if (findKeyword(statement, "how to get awway with murder") >= 0
+				|| findKeyword(statement, "orange is the new black") >= 0
+				|| findKeyword(statement, "american horror story") >= 0
+				|| findKeyword(statement, "game of thrones") >= 0
+				|| findKeyword(statement, "the walking dead") >= 0
+				|| findKeyword(statement, "scandal") >= 0
+				|| findKeyword(statement, "svu") >= 0
+				|| findKeyword(statement, "scandal") >= 0
+				|| findKeyword(statement, "onr tree hill") >= 0
+				|| findKeyword(statement, "american horror story") >= 0
+				|| findKeyword(statement, "grey's anatomy") >= 0)
+		{
+			response = "That show seems slow to me. Is it good?";
+		}
+		else if (findKeyword(statement, "beyonce") >= 0
+				|| findKeyword(statement, "drake") >= 0
+				|| findKeyword(statement, "bieber") >= 0
+				|| findKeyword(statement, "chance") >= 0
+				|| findKeyword(statement, "the walking dead") >= 0
+				|| findKeyword(statement, "scandal") >= 0
+				|| findKeyword(statement, "svu") >= 0
+				|| findKeyword(statement, "scandal") >= 0
+				|| findKeyword(statement, "onr tree hill") >= 0
+				|| findKeyword(statement, "american horror story") >= 0
+				|| findKeyword(statement, "grey's anatomy") >= 0)
+		{
+			response = "That show seems slow to team.";
+		}
+		else if (findKeyword(statement, "tv") >= 0
+				|| findKeyword(statement, "show") >= 0)
+		{
+			response = "My favorite show is Law & Order: SVU. I dance to the theme song.";
+		}
 		else if (findKeyword(statement, "february") >= 0
 				|| findKeyword(statement, "january") >= 0
 				|| findKeyword(statement, "december") >= 0
@@ -104,9 +143,10 @@ public class Acquaintance
 				|| findKeyword(statement, "tommy") >= 0
 				|| findKeyword(statement, "polo") >= 0
 				|| findKeyword(statement, "bape") >= 0
+				|| findKeyword(statement, "shopping") >= 0
 				|| findKeyword(statement, "h&m") >= 0)
 		{
-			response = "Wow, you have great style!";
+			response = "Wow, you have great style! We should go shopping together soon";
 		}
 		else if (findKeyword(statement, "mother") >= 0
 				|| findKeyword(statement, "father") >= 0
@@ -114,6 +154,14 @@ public class Acquaintance
 				|| findKeyword(statement, "brother") >= 0)
 		{
 			response = "Are you close with your family?";
+		}
+		else if (findKeyword(statement, "brooklyn") >= 0
+				|| findKeyword(statement, "queens") >= 0
+				|| findKeyword(statement, "bronx") >= 0
+				|| findKeyword(statement, "manhattan") >= 0
+				|| findKeyword(statement, "staten") >= 0)
+		{
+			response = "I live in Queens, but my favorite borough is Manhattan.";
 		}
 		else if (findKeyword(statement, "thank you") >= 0
 				|| findKeyword(statement, "thanks") >= 0
@@ -386,7 +434,7 @@ public class Acquaintance
 			"Tight. Do you like to dance?",
 			"That's dope. Do you go to school around here?",
 			"Oh yeah? Do you have a lot of friends?",
-			"That's cool. Do you watch TV a lot?",
+			"That's cool. What shows have you been watching?",
 			"Sweet. I really like your outfit. What brands do you like to wear?",
 			"You look tired. How late did you sleep last night?",
 			"Are you a hypebeast, too?"
