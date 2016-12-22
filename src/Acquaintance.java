@@ -40,15 +40,6 @@ public class Acquaintance
 		{
 			response = "You there?";
 		}
-		else if (findKeyword(statement, "hey") >= 0)
-		{
-			response = maggieF.getResponse(statement);
-		}
-		else if (findKeyword(statement, "hi") >= 0)
-		{
-			response = maggieL.getResponse(statement);
-		}
-
 		else if (findKeyword(statement, "fun") >= 0)
 		{
 			response = "What do you do for fun? Synchronized swimming is fun for me.";
@@ -68,33 +59,33 @@ public class Acquaintance
 		{
 			response = "Do you play any sports?";
 		}
-		else if (findKeyword(statement, "February") >= 0
-				|| findKeyword(statement, "January") >= 0
-				|| findKeyword(statement, "December") >= 0
-				|| findKeyword(statement, "Winter") >= 0)
+		else if (findKeyword(statement, "february") >= 0
+				|| findKeyword(statement, "january") >= 0
+				|| findKeyword(statement, "december") >= 0
+				|| findKeyword(statement, "winter") >= 0)
 		{
 			response = "Winter is my least favorite season! The cold irritates my skin.";
 		}
-		else if (findKeyword(statement, "April") >= 0
-				|| findKeyword(statement, "May") >= 0
-				|| findKeyword(statement, "Spring") >= 0
-				|| findKeyword(statement, "March") >= 0)
+		else if (findKeyword(statement, "april") >= 0
+				|| findKeyword(statement, "may") >= 0
+				|| findKeyword(statement, "spring") >= 0
+				|| findKeyword(statement, "march") >= 0)
 		{
 			response = "Rain sucks so I hate spring.";
 		}
-		else if (findKeyword(statement, "June") >= 0
-				|| findKeyword(statement, "July") >= 0
-				|| findKeyword(statement, "August") >= 0
-				|| findKeyword(statement, "Summer") >= 0)
+		else if (findKeyword(statement, "june") >= 0
+				|| findKeyword(statement, "july") >= 0
+				|| findKeyword(statement, "august") >= 0
+				|| findKeyword(statement, "summer") >= 0)
 		{
 			
 			response = "I love summer! My skin glows so much. Whats your favorite season?";
 		}
-		else if (findKeyword(statement, "September") >= 0
-				|| findKeyword(statement, "October") >= 0
-				|| findKeyword(statement, "November") >= 0
-				|| findKeyword(statement, "Autumn") >= 0
-				|| findKeyword(statement, "Fall") >= 0)
+		else if (findKeyword(statement, "september") >= 0
+				|| findKeyword(statement, "cctober") >= 0
+				|| findKeyword(statement, "november") >= 0
+				|| findKeyword(statement, "autumn") >= 0
+				|| findKeyword(statement, "fall") >= 0)
 		{
 			response = "Autumn is the best becuase of Halloween. What did you go as last year?";
 		}
@@ -102,18 +93,18 @@ public class Acquaintance
 		{
 			response = "Forreal?!?! 'Preme Team!!!";
 		}
-		else if (findKeyword(statement, "Adidas") >= 0
-				|| findKeyword(statement, "Nike") >= 0
-				|| findKeyword(statement, "Vans") >= 0
-				|| findKeyword(statement, "Converse") >= 0
-				|| findKeyword(statement, "Supreme") >= 0
-				|| findKeyword(statement, "Aero") >= 0
-				|| findKeyword(statement, "Forever 21") >= 0
-				|| findKeyword(statement, "Gap") >= 0
-				|| findKeyword(statement, "Tommy") >= 0
-				|| findKeyword(statement, "Polo") >= 0
-				|| findKeyword(statement, "Bape") >= 0
-				|| findKeyword(statement, "H&M") >= 0)
+		else if (findKeyword(statement, "adidas") >= 0
+				|| findKeyword(statement, "nike") >= 0
+				|| findKeyword(statement, "vans") >= 0
+				|| findKeyword(statement, "converse") >= 0
+				|| findKeyword(statement, "supreme") >= 0
+				|| findKeyword(statement, "aero") >= 0
+				|| findKeyword(statement, "forever ") >= 0
+				|| findKeyword(statement, "gap") >= 0
+				|| findKeyword(statement, "tommy") >= 0
+				|| findKeyword(statement, "polo") >= 0
+				|| findKeyword(statement, "bape") >= 0
+				|| findKeyword(statement, "h&m") >= 0)
 		{
 			response = "Wow, you have great style!";
 		}
@@ -122,17 +113,22 @@ public class Acquaintance
 				|| findKeyword(statement, "sister") >= 0
 				|| findKeyword(statement, "brother") >= 0)
 		{
-			response = "Tell me more about your family.";
+			response = "Are you close with your family?";
 		}
-		else if (findKeyword(statement, "I want to", 0) >= 0)
+		else if (findKeyword(statement, "thank you") >= 0
+				|| findKeyword(statement, "thanks") >= 0
+				|| findKeyword(statement, "good looks") >= 0)
+		{
+			response = "You're welcome!";
+		}
+		else if (findKeyword(statement, "i want to", 0) >= 0)
 		{
 			response = transformIWantToStatement(statement);
 		}
-		else if (findKeyword(statement, "I want", 0) >= 0)
+		else if (findKeyword(statement, "i want", 0) >= 0)
 		{
 			response = transformIWantStatement(statement);
 		}
-
 		else
 		{
 
@@ -159,10 +155,17 @@ public class Acquaintance
 				}
 				else
 				{
-					response = getRandomQuestion();
+					response = getRandomPlatonicQuestion();
 				}
 			}
 		}
+		return response;
+	}
+	
+	public String getRomanticResponse(String statement)
+	{
+		String response = "";
+		response = getRandomRomanticQuestion();
 		return response;
 	}
 	
@@ -336,7 +339,7 @@ public class Acquaintance
 	 * @param goal the string to search for
 	 * @return the index of the first occurrence of goal in statement or -1 if it's not found
 	 */
-	private int findKeyword(String statement, String goal)
+	public int findKeyword(String statement, String goal)
 	{
 		return findKeyword (statement, goal, 0);
 	}
@@ -364,12 +367,6 @@ public class Acquaintance
 		return randomRomanticQuestions [r.nextInt(randomRomanticQuestions.length)];
 	}
 	
-	private String getRandomQuestion ()
-	{
-		Random r = new Random ();
-		return randomRomanticQuestions [r.nextInt(randomRomanticQuestions.length)];
-	}
-	
 	private String [] randomResponses = {
 			"Interesting, tell me more",
 			"Hmmm.",
@@ -383,10 +380,10 @@ public class Acquaintance
 	
 	private String [] randomPlatonicQuestions = {
 			"Nice. Do you like sports?",
-			"I see. Are you close to your parents?",
+			"I see. Are you the oldest sibling?",
 			"Oh. What grade are you in?",
 			"Really. What month is your birthday in?",
-			"Tight. Do you like to dance.",
+			"Tight. Do you like to dance?",
 			"That's dope. Do you go to school around here?",
 			"Oh yeah? Do you have a lot of friends?",
 			"That's cool. Do you watch TV a lot?",
@@ -400,12 +397,6 @@ public class Acquaintance
 			"Are you looking for a significant other?",
 			"Do you think I'm cute?",
 			"Do you think my hair looks good?",
-			"Do you want to date me?"
+			"Would you want to date me?"
 	};
-	
-	public static void main(String[] args)
-	{
-		Friend maggieF = new Friend();
-		Lover maggieL = new Lover();
-	}
 }
