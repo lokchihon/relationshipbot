@@ -34,7 +34,8 @@ public class Friend {
 		{
 			response = "Are you mad at me? Why aren't you talking to me?";
 		}
-		else if (findKeyword(statement, "I am", 0) >= 0)
+		else if (findKeyword(statement, "I am", 0) >= 0
+				|| findKeyword(statement, "I'm", 0) >= 0)
 		{
 			response = transformIAm(statement);
 		}
@@ -46,7 +47,7 @@ public class Friend {
 		{
 			response = transformIWantStatement(statement);
 		}
-		else if (statement.substring(statement.length()-1) == "?")
+		else if (statement.substring(statement.length()-2, statement.length()-1) == "?")
 		{
 			response = transformQuestions(statement);
 		}
@@ -54,6 +55,40 @@ public class Friend {
 				|| findKeyword(statement, "hang out",0) >=0)
 		{
 			response = createEvent(statement);
+		}
+		else if (findKeyword (statement, "mother", 0) >= 0
+				|| findKeyword (statement, "mom", 0) >= 0
+				|| findKeyword (statement, "father", 0) >= 0
+				|| findKeyword (statement, "dad", 0) >= 0
+				|| findKeyword (statement, "grandmother", 0) >= 0
+				|| findKeyword (statement, "grandma", 0) >= 0
+				|| findKeyword (statement, "grandfather", 0) >= 0
+				|| findKeyword (statement, "grandpa", 0) >= 0
+				|| findKeyword (statement, "aunt", 0) >= 0
+				|| findKeyword (statement, "uncle", 0) >= 0
+				|| findKeyword (statement, "cousin", 0) >= 0
+				|| findKeyword (statement, "brother", 0) >= 0
+				|| findKeyword (statement, "sister", 0) >= 0
+				|| findKeyword (statement, "sibling", 0) >= 0
+				)
+		{
+			response = getFamilyResponses();
+		}
+		else if (findKeyword (statement, "school", 0) >= 0
+				|| findKeyword (statement, "college", 0) >= 0
+				|| findKeyword (statement, "university", 0) >= 0
+				|| findKeyword (statement, "homework", 0) >= 0
+				|| findKeyword (statement, "teacher", 0) >= 0
+				|| findKeyword (statement, "class", 0) >= 0
+				|| findKeyword (statement, "student", 0) >= 0
+				|| findKeyword (statement, "classwork", 0) >= 0
+				|| findKeyword (statement, "lesson", 0) >= 0
+				|| findKeyword (statement, "test", 0) >= 0
+				|| findKeyword (statement, "grades", 0) >= 0
+				|| findKeyword (statement, "report cards", 0) >= 0
+				)
+		{
+			response = getSchoolResponses();
 		}
 		else
 		{
@@ -130,7 +165,7 @@ public class Friend {
 		}
 		int psn = findKeyword (statement, "I want to", 0);
 		String restOfStatement = statement.substring(psn + 9).trim();
-		return "Why do you want to " + restOfStatement + "then?";
+		return "Why don't you " + restOfStatement + " then?";
 	}
 	
 	/**
@@ -158,50 +193,36 @@ public class Friend {
 	//Takes user's questions and responds with random responses while prompting the user with more questions
 	private String transformQuestions (String statement)
 	{
-		String response = "";
-		for(int i = 0; i<familyMembers.length; i++)
-		{
-			if (findKeyword(statement, familyMembers[i], 0) >= 0)
-			{
-				response = getFamilyResponses();
-			}
-		}
-		
-		for(int k = 0; k<school.length; k++)
-		{
-			if (findKeyword(statement, school[k], 0) >= 0)
-			{
-				response = getSchoolResponses();
-			}
-			else
-				response = "I don't really want to talk about it. What about you?";
-		}
-		return response;
+		return "I don't really want to talk about it. What about you?";
 	}
 
 	//Transforms "I am ____" statements so the user will be prompted to talk about why they are _____
 	private String transformIAm (String statement)
 	{
 		String response = "";
-		for(int i = 0; i<positiveEmotions.length; i++)
+		if (findKeyword(statement, "happy", 0) >= 0
+				|| findKeyword(statement, "glad", 0) >= 0
+				|| findKeyword (statement, "giddy", 0) >= 0
+				|| findKeyword (statement, "good mood", 0) >= 0
+				|| findKeyword (statement, "excited", 0) >= 0
+				|| findKeyword (statement, "hyped", 0) >= 0)
 		{
-			if (findKeyword(statement, positiveEmotions[i], 0) >= 0)
-			{
-				response = "Ooo! What happened? Why are you " + positiveEmotions[i] + "?";
-			}
+			response = "Ooo! What happened? Why are you in a good mood?";
 		}
-		
-		for(int k = 0; k<negativeEmotions.length; k++)
+
+		else if (findKeyword(statement, "sad", 0) >= 0
+				|| findKeyword(statement, "upset", 0) >= 0
+				|| findKeyword (statement, "angry", 0) >= 0
+				|| findKeyword (statement, "bad mood", 0) >= 0
+				|| findKeyword (statement, "depressed", 0) >= 0
+				|| findKeyword (statement, "annoyed", 0) >= 0)
 		{
-			if (findKeyword(statement, positiveEmotions[k], 0) >= 0)
-			{
-				response= "Aw. Why are you " + negativeEmotions[k] + "? You know you can always talk to me right?";
-			}
-			else
+			response = "Aw. Why are you in a bad mood? You know you can always talk to me right?";
+		}
+		else
 			{
 				response = "Why? Tell me about it.";
 			}
-		}
 		return response;
 	}
 	
@@ -238,7 +259,9 @@ public class Friend {
 			//  All you need to do is add lines here
 			"When can we hang out?",
 			"Are you free any time soon?",
-			"How's life?"
+			"How's life?",
+			"What are you up to?",
+			"Anything interesting going on in your life?",
 			};
 	
 	//Generates responses in regards of school
@@ -246,7 +269,9 @@ public class Friend {
 			"I had a pretty bad day at school today. How was your day?",
 			"I stayed up all night doing a project. Have you had any projects lately?",
 			"My teacher assigned a crazy amount of homework. Do your teachers do that?",
-			"I have this huge term paper. Do you get term papers?"
+			"I have this huge term paper. Do you get term papers?",
+			"Report cards are coming out soon! :(",
+			"I can't wait to graduate!",
 			};
 	
 	//Generates responses in regards of family
@@ -254,6 +279,7 @@ public class Friend {
 			"My family is doing good! How's your family?",
 			"We had a HUGE family dinner the other day! Did you have any family dinners recently?",
 			"Christmas is coming up soon! What's a good gift for any family member?",
+			"My aunt keeps bugging me about colleges. What colleges do you want to go to?"
 	};
 	
 	//Generates responses about planning a hangout
@@ -261,57 +287,8 @@ public class Friend {
 			"Where do you like to hangout?",
 			"What's your favorite activity?",
 			"I'm so busy lately. Maybe another time!",
-			"I'm free Wednesdays"
+			"I'm free Wednesdays."
 	};
-
-	//List of family members
-	private String [] familyMembers = {
-			"mother", 
-			"father", 
-			"grandmother",
-			"grandmother",
-			"uncle",
-			"aunt",
-			"brother",
-			"sister",
-	};
-	
-	//List of school related words
-	private String [] school = {
-			"school",
-			"college",
-			"university",
-			"homework",
-			"teacher",
-			"class",
-			"classmate",
-			"term",
-			"semester",
-	};
-	
-	//List of positive emotions
-	private String [] positiveEmotions = {
-			"happy",
-			"giddy",
-			"good mood",
-			"excited",
-			"glad",
-			"hyped"
-	};
-	
-	//List of negative emotions
-	private String [] negativeEmotions = {
-			"sad",
-			"depressed",
-			"upset",
-			"angry",
-			"mad",
-			"bad mood",
-	};
-	
-
-	
-	
-	}
+}
 
 
