@@ -40,6 +40,42 @@ public class Acquaintance
 		{
 			response = "You there?";
 		}
+		else if (findKeyword(statement, "how are you") >= 0)
+		{
+			response = "Good, thanks.";
+		}
+		else if (findKeyword(statement, "yours?") >= 0)
+		{
+			response = "My what?";
+		}
+		else if (findKeyword(statement, "You?") >= 0)
+		{
+			response = "What about me?";
+		}
+		else if (findKeyword(statement, "manhattan") >= 0)
+		{
+			response = "I wish I lived in downtown Manhattan; It's in the center of everything!";
+		}
+		else if (findKeyword(statement, "bronx") >= 0)
+		{
+			response = "How about we NOT talk about the Bronx?";
+		}
+		else if (findKeyword(statement, "staten island") >= 0)
+		{
+			response = "I kinda feel like we should gift Staten Island to New Jersey...";
+		}
+		else if (findKeyword(statement, "brooklyn") >= 0)
+		{
+			response = "Word to your timbs?";
+		}
+		else if (findKeyword(statement, "queens") >= 0)
+		{
+			response = "I live in Queens, but it gets too quiet sometimes.";
+		}
+		else if (findKeyword(statement, "your name") >= 0)
+		{
+			response = "My name's AJ.";
+		}
 		else if (findKeyword(statement, "fun") >= 0)
 		{
 			response = "What do you do for fun? Synchronized swimming is fun for me.";
@@ -82,12 +118,16 @@ public class Acquaintance
 		else if (findKeyword(statement, "beyonce") >= 0
 				|| findKeyword(statement, "drake") >= 0
 				|| findKeyword(statement, "bieber") >= 0
-				|| findKeyword(statement, "chance") >= 0
+				|| findKeyword(statement, "chance") >= 0)
+		{
+			response = "I love their music!";
+		}
+		else if (findKeyword(statement, "the 100") >= 0
 				|| findKeyword(statement, "the walking dead") >= 0
 				|| findKeyword(statement, "scandal") >= 0
 				|| findKeyword(statement, "svu") >= 0
 				|| findKeyword(statement, "scandal") >= 0
-				|| findKeyword(statement, "onr tree hill") >= 0
+				|| findKeyword(statement, "one tree hill") >= 0
 				|| findKeyword(statement, "american horror story") >= 0
 				|| findKeyword(statement, "grey's anatomy") >= 0)
 		{
@@ -126,7 +166,7 @@ public class Acquaintance
 				|| findKeyword(statement, "autumn") >= 0
 				|| findKeyword(statement, "fall") >= 0)
 		{
-			response = "Autumn is the best becuase of Halloween. What did you go as last year?";
+			response = "Autumn is the best because of Halloween. What did you go as last year?";
 		}
 		else if (findKeyword(statement, "supreme") >= 0)
 		{
@@ -146,7 +186,7 @@ public class Acquaintance
 				|| findKeyword(statement, "shopping") >= 0
 				|| findKeyword(statement, "h&m") >= 0)
 		{
-			response = "Wow, you have great style! We should go shopping together soon";
+			response = "Wow, you have great style! We should go shopping together soon.";
 		}
 		else if (findKeyword(statement, "mother") >= 0
 				|| findKeyword(statement, "father") >= 0
@@ -154,14 +194,6 @@ public class Acquaintance
 				|| findKeyword(statement, "brother") >= 0)
 		{
 			response = "Are you close with your family?";
-		}
-		else if (findKeyword(statement, "brooklyn") >= 0
-				|| findKeyword(statement, "queens") >= 0
-				|| findKeyword(statement, "bronx") >= 0
-				|| findKeyword(statement, "manhattan") >= 0
-				|| findKeyword(statement, "staten") >= 0)
-		{
-			response = "I live in Queens, but my favorite borough is Manhattan.";
 		}
 		else if (findKeyword(statement, "thank you") >= 0
 				|| findKeyword(statement, "thanks") >= 0
@@ -216,6 +248,89 @@ public class Acquaintance
 		response = getRandomRomanticQuestion();
 		return response;
 	}
+	
+	public String getWYRQuestion(String statement)
+	{
+		String response = "";
+		response = getRandomWYR();
+		return response;
+	}
+	
+	public String getWYRAnswer(String statement)
+	{
+		String response = "";
+		response = transformWYR(statement);
+		return response;
+	}
+	
+	public String getWYRResponse(String statement)
+	{
+		String response = "";
+		if (statement.length() == 0)
+		{
+			response = "You there?";
+		}
+		else if (findKeyword(statement, "funniest") >= 0)
+		{
+			response = "I agree because I think I'm doing okay for smarts.";
+		}
+		else if (findKeyword(statement, "intelligent") >= 0)
+		{
+			response = "You'd probably find their humor cheap!";
+		}
+		else if (findKeyword(statement, "beginning") >= 0)
+		{
+			response = "What about me?";
+		}
+		else if (findKeyword(statement, "end") >= 0)
+		{
+			response = "Sounds dark. Cool!";
+		}
+		else if (findKeyword(statement, "continue") >= 0)
+		{
+			response = "You've made it this far, right?";
+		}
+		else if (findKeyword(statement, "restart") >= 0)
+		{
+			response = "I'd do anything for a clean slate too!";
+		}
+		else if (findKeyword(statement, "space") >= 0)
+		{
+			response = "It must get so lonely and cold up there!";
+		}
+		else if (findKeyword(statement, "sea") >= 0)
+		{
+			response = "Those deep sea fish with lightbulb eyes are kinda creepy.";
+		}
+		else if (findKeyword(statement, "cold") >= 0)
+		{
+			response = "I guess you could always wear a lot of clothes to ward it off.";
+		}
+		else if (findKeyword(statement, "hot") >= 0)
+		{
+			response = "Same! I like to sweat.";
+		}
+		else if (findKeyword(statement, "forwards") >= 0)
+		{
+			response = "Tell me about the flying cars!";
+		}
+		else if (findKeyword(statement, "backwards") >= 0)
+		{
+			response = "Let me know if Cleopatra was as hot as everyone hyped her up to be.";
+		}
+		else if (findKeyword(statement, "ugly") >= 0
+				|| findKeyword(statement, "genius") >= 0)
+		{
+			response = "You can create a hottie elixer. Clever!";
+		}
+		else if (findKeyword(statement, "moron") >= 0)
+		{
+			response = "Conceited much?";
+		}
+		
+		return response;
+	}
+	
 	
 	/**
 	 * Take a statement with "I want to <something>." and transform it into 
@@ -312,6 +427,32 @@ public class Acquaintance
 		return "Why do you " + restOfStatement + " me?";
 	}
 	
+	/**
+	 * Take a statement with "I <something> you" and transform it into 
+	 * "Why do you <something> me?"
+	 * @param statement the user statement, assumed to contain "rather" followed by "or"
+	 * @return the transformed statement
+	 */
+	private String transformWYR(String statement)
+	{
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		
+		int psnOfRather = findKeyword (statement, "rather", 0);
+		int psnOfOr = findKeyword (statement, "or", psnOfRather);
+		
+		String choice1 = statement.substring(psnOfRather + 1, psnOfOr).trim();
+		String choice2 = statement.substring(psnOfRather + 1, psnOfOr).trim();
+		return "I'd r" + choice1 + ". " + getRandomAffirmations();
+	}
+	
 
 	
 	
@@ -402,6 +543,11 @@ public class Acquaintance
 		Random r = new Random ();
 		return randomResponses [r.nextInt(randomResponses.length)];
 	}
+	private String getRandomAffirmations ()
+	{
+		Random r = new Random ();
+		return affirmations [r.nextInt(affirmations.length)];
+	}
 	
 	private String getRandomPlatonicQuestion ()
 	{
@@ -413,6 +559,12 @@ public class Acquaintance
 	{
 		Random r = new Random ();
 		return randomRomanticQuestions [r.nextInt(randomRomanticQuestions.length)];
+	}
+	
+	private String getRandomWYR ()
+	{
+		Random r = new Random ();
+		return wouldYouRathers [r.nextInt(wouldYouRathers.length)];
 	}
 	
 	private String [] randomResponses = {
@@ -431,7 +583,8 @@ public class Acquaintance
 			"I see. Are you the oldest sibling?",
 			"Oh. What grade are you in?",
 			"Really. What month is your birthday in?",
-			"Tight. Do you like to dance?",
+			"That's pretty tight!",
+			"Anyway, what school do you go to?",
 			"That's dope. Do you go to school around here?",
 			"Oh yeah? Do you have a lot of friends?",
 			"That's cool. What shows have you been watching?",
@@ -446,5 +599,25 @@ public class Acquaintance
 			"Do you think I'm cute?",
 			"Do you think my hair looks good?",
 			"Would you want to date me?"
+	};
+	
+	private String [] wouldYouRathers = {
+			"Would you rather be the funniest person in the room or most intelligent?",
+			"Would you rather experience the beginning of planet Earth or the end?",
+			"Would you rather continue with life or restart it?",
+			"Would you rather live in space or under the sea?",
+			"Would you rather be super cold or super hot?",
+			"Would you rather have a time machine that goes only forwards or only backwards?",
+			"Would you rather be an ugly genius or a hot moron?"
+	};
+	
+	private String [] affirmations = {
+			"Who'd do the other one?",
+			"Yeah, definitely!",
+			"That's the better of the two.",
+			"That was a toughie.",
+			"That's easy.",
+			"Actually, I don't know.",
+			"Good one!"
 	};
 }

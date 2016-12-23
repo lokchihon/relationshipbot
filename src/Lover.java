@@ -25,7 +25,7 @@ public class Lover
 					|| findKeyword(statement, "terrible") >= 0
 					|| findKeyword(statement, "hated it") >= 0)
 			{
-				response = "Why? ";
+				response = "Aw no. Why?";
 			}
 			else if (findKeyword(statement, "good") >= 0
 					|| findKeyword(statement, "amazing") >= 0
@@ -33,19 +33,30 @@ public class Lover
 			{
 				response = "Really? Tell me all about it!";
 			}
-			else if (findKeyword(statement, "I love you") >= 0)
+			else if (findKeyword(statement, "love you too", 0) >= 0)
 			{
-				response = "I love you too. ";
+				response = "I love you three!";
+			}
+			else if (findKeyword(statement, "love you four", 0) >= 0)
+			{
+				response = "I love you five!";
+			}
+			else if (findKeyword(statement, "love you six", 0) >= 0)
+			{
+				response = "We both know that I love you more <3";
+			}
+			else if (findKeyword(statement, "love you") >= 0)
+			{
+				response = "I love you too.";
 			}
 			else if (findKeyword(statement, "mother") >= 0
 					|| findKeyword(statement, "father") >= 0
 					|| findKeyword(statement, "sister") >= 0
 					|| findKeyword(statement, "brother") >= 0)
 			{
-				response = "Speaking of family, my parents misses"
-						+ " you and wants you to come over for dinner.";
+				response = "Speaking of family, my parents miss you and wants you to come over for dinner.";
 			}
-			else if (findKeyword(statement, "on a date") >= 0)
+			else if (findKeyword(statement, "date") >= 0)
 			{
 				response = "Lets go on a date next week";
 			}
@@ -64,18 +75,6 @@ public class Lover
 					|| findKeyword(statement, "to go in", 0) >= 0)
 			{
 				response = transformToGoStatement(statement);
-			}
-			else if (findKeyword(statement, "I love you too", 0) >= 0)
-			{
-				response = "I love you three";
-			}
-			else if (findKeyword(statement, "I love you four", 0) >= 0)
-			{
-				response = "I love you five";
-			}
-			else if (findKeyword(statement, "I love you six", 0) >= 0)
-			{
-				response = "we both know i love you more <3";
 			}
 			else
 			{
@@ -236,17 +235,18 @@ public class Lover
 	}
 
 	private String [] randomResponses =
-{
-		"It's ok, I still love you",
+	{
+		"It's okay, I still love you.",
 		"Can you say that again, Honey?",
 		"Do you really think so?",
-		"Mom and dad are making fried chicken tonight. Come over",
+		"My dad's making fried chicken tonight. Come over.",
 		"Oh really?",
 		"Do you want to go on a date this weekend?",
 		"So, would you like to go see a movie?",
 		"I love you",
 		"<3 <3 <3"
 	};
+	
 	private String transformToGoStatement(String statement)
 	{
 		// Remove the final period, if there is one
@@ -265,5 +265,4 @@ public class Lover
 		String restOfStatement = statement.substring(psn + 5).trim();
 		return "Sure, lets" + restOfStatement + " together?";
 	}
-
-	}
+}
